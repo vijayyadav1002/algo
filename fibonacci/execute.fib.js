@@ -1,5 +1,5 @@
-import { fib } from './fib';
-import { fibOfficial, fibMemoize, fibonacci } from './fib.official';
+import { fib } from './fib.js';
+import { fibOfficial, fibMemoize, fibonacci } from './fib.official.js';
 
 const createArray = (length) => {
     const arr = [];
@@ -9,7 +9,7 @@ const createArray = (length) => {
     return arr;
 }
 
-const arr = createArray(10);
+const arr = createArray(1000);
 
 
 // linear time complexity
