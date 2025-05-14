@@ -1,7 +1,7 @@
 {
   "name": "node-application",
   "version": "1.0.0",
-  "type": "module",
+  "type": "commonjs",
   "description": "",
   "main": "index.js",
   "module": "main.js",
@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "esm": "^3.2.25",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
