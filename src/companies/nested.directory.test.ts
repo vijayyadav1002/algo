@@ -6,7 +6,8 @@ describe("nested.directory - ToggleFolder ", () => {
         expect(result?.[0].files?.[0].isOpen).toBe(true)
     })
     test("toggle nested.directory.ts should be undefined", () => {
-        const result = toggleFolder("src/companies/nested.directory.ts".split("/"), [...sampleFiles]);
+        const result = toggleFolder("src/companies/nested.directory.ts".split("/")
+        , [...sampleFiles]);
         expect(result?.[0].files?.[0].files?.[0]?.isOpen).toBe(undefined)
     })
-})
+}) 
