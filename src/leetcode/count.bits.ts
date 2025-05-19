@@ -36,7 +36,15 @@ const getBinaryOfNumber = (n: number): number[] => {
     return bits.reverse()
 }
 
-export { countBits, getBinaryOfNumber }
+const getNumberFromBinary = (n: number[]): number => {
+    let number = 0;
+    for (let i=0; i < n.length; i++) {
+        number = number + (Math.pow(2, n.length - i - 1) * n[i])
+    }
+    return number;
+}
+
+export { countBits, getBinaryOfNumber, getNumberFromBinary }
 
 /**
 # Explain me number system in detail

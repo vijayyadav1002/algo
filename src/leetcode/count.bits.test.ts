@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/counting-bits/submissions/
 
-import { countBits, getBinaryOfNumber } from "./count.bits";
+import { countBits, getBinaryOfNumber, getNumberFromBinary } from "./count.bits";
 
 
 describe("countBits", () => {
@@ -23,5 +23,17 @@ describe("getBinaryOfNumber", () => {
     test("Binary for Number 4", () => {
         const result = getBinaryOfNumber(4)
         expect(result).toEqual([1,0,0])
+    })
+})
+
+
+describe("getNumberFromBinary", () => {
+    test("Number of binary [1, 0, 0]", () => {
+        const result = getNumberFromBinary([1, 0, 0])
+        expect(result).toEqual(4)
+    })
+    test("Binary for Number [1, 0, 1]", () => {
+        const result = getNumberFromBinary([1, 0, 1])
+        expect(result).toEqual(5)
     })
 })
