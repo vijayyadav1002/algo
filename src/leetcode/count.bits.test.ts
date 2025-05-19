@@ -28,11 +28,11 @@ describe("getBinaryOfNumber", () => {
 
 
 describe("getNumberFromBinary", () => {
-    test("Number of binary [1, 0, 0]", () => {
+    test("Number of binary [1, 0, 0] is 4", () => {
         const result = getNumberFromBinary([1, 0, 0])
         expect(result).toEqual(4)
     })
-    test("Binary for Number [1, 0, 1]", () => {
+    test("Number of binary [1, 0, 1] is 5", () => {
         const result = getNumberFromBinary([1, 0, 1])
         expect(result).toEqual(5)
     })
