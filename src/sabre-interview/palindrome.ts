@@ -9,37 +9,37 @@ When there is only one palindrome => 'No Second Palindrome exists'
 When there is a second palindrome => 'Found Palindrome: [PALINDROME]'
 */
 
-const isPalindrome = (data: string) :boolean => {
-    const length = data.length;
-    for (let i = 0; i < length / 2; i++) {
-        if (data[i] !== data[length - 1 - i]) {
-            return false;
-        }   
+const isPalindrome = (data: string): boolean => {
+  const length = data.length;
+  for (let i = 0; i < length / 2; i++) {
+    if (data[i] !== data[length - 1 - i]) {
+      return false;
     }
-    return true;
+  }
+  return true;
 };
 
-const palindrome = (data: string):string => {
-    if (typeof data !== 'string') {
-        return 'No Palindrome exists';
+const palindrome = (data: string): string => {
+  if (typeof data !== 'string') {
+    return 'No Palindrome exists';
+  }
+  const palindromes = [];
+  for (let i = 0; i < data.length; i++) {
+    for (let j = i + 1; j <= data.length; j++) {
+      const subString = data.substring(i, j);
+      if (subString.length > 1 && isPalindrome(subString)) {
+        palindromes.push(subString);
+      }
     }
-    const palindromes = [];
-    for (let i = 0; i < data.length; i++) {
-        for (let j = i + 1; j <= data.length; j++) {
-            const subString = data.substring(i, j);
-            if (subString.length > 1 && isPalindrome(subString)) {
-                palindromes.push(subString);
-            }
-        }
-    }
-    if (palindromes.length === 0) {
-        return 'No Palindrome exists';
-    }
-    if (palindromes.length === 1) {
-        return 'No Second Palindrome exists';
-    }
-    palindromes.sort((a, b) => b.length - a.length);
-    return `Found Palindrome: ${palindromes[1]}`;
+  }
+  if (palindromes.length === 0) {
+    return 'No Palindrome exists';
+  }
+  if (palindromes.length === 1) {
+    return 'No Second Palindrome exists';
+  }
+  palindromes.sort((a, b) => b.length - a.length);
+  return `Found Palindrome: ${palindromes[1]}`;
 };
 
-export { palindrome }
+export { palindrome };

@@ -1,4 +1,3 @@
-
 // solves 3x + 9y + 8z = 79;
 function findXYZ(n: number) {
   const solutions = [];
@@ -16,4 +15,4 @@ function findXYZ(n: number) {
   return solutions;
 }
 
-export { findXYZ }
+export { findXYZ };

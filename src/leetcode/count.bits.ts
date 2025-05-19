@@ -1,50 +1,49 @@
 // https://leetcode.com/problems/counting-bits/submissions/
 
 /**
- * 
- * @param {number} n 
+ *
+ * @param {number} n
  * @returns {number}
  */
 const sumBinary = (n: number): number => {
-    var sum = 0;
-    while (n) {
-        sum += n % 2;
-        n = Math.floor(n / 2);
-    }
-    return sum;
+  var sum = 0;
+  while (n) {
+    sum += n % 2;
+    n = Math.floor(n / 2);
+  }
+  return sum;
 };
-
 
 /**
  * @param {number} n
  * @return {number[]}
  */
 const countBits = (n: number): number[] => {
-    const result = [];
-    for (let i = 0; i <= n; i++) {
-        result.push(sumBinary(i));
-    }
-    return result;
+  const result = [];
+  for (let i = 0; i <= n; i++) {
+    result.push(sumBinary(i));
+  }
+  return result;
 };
 
 const getBinaryOfNumber = (n: number): number[] => {
-    const bits: number[] = [];
-    while (n > 0) {
-        bits.push(n%2);
-        n = Math.floor(n/2);
-    }
-    return bits.reverse()
-}
+  const bits: number[] = [];
+  while (n > 0) {
+    bits.push(n % 2);
+    n = Math.floor(n / 2);
+  }
+  return bits.reverse();
+};
 
 const getNumberFromBinary = (n: number[]): number => {
-    let number = 0;
-    for (let i=0; i < n.length; i++) {
-        number = number + (Math.pow(2, n.length - i - 1) * n[i])
-    }
-    return number;
-}
+  let number = 0;
+  for (let i = 0; i < n.length; i++) {
+    number = number + Math.pow(2, n.length - i - 1) * n[i];
+  }
+  return number;
+};
 
-export { countBits, getBinaryOfNumber, getNumberFromBinary }
+export { countBits, getBinaryOfNumber, getNumberFromBinary };
 
 /**
 # Explain me number system in detail

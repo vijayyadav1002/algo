@@ -1,5 +1,12 @@
 // https://leetcode.com/problems/stream-of-characters/
-import { spellCheckerData, sampleData, sampleDataExpected, failedData, failedDataExpected, exceedTimeLimit } from "./spellcheck.data";
+import {
+  spellCheckerData,
+  sampleData,
+  sampleDataExpected,
+  failedData,
+  failedDataExpected,
+  exceedTimeLimit,
+} from './spellcheck.data';
 
 /**
 Input
@@ -33,42 +40,40 @@ letter is a lowercase English letter.
 At most 4 * 104 calls will be made to query.
  */
 
-
-
 /**
  * @param {string[]} words
  */
- var StreamChecker = function(words) {
-    this.input = words;
-    this.stack = '';
-    this.inputLength = this.input.length;
+var StreamChecker = function (words) {
+  this.input = words;
+  this.stack = '';
+  this.inputLength = this.input.length;
 };
 
-/** 
+/**
  * @param {character} letter
  * @return {boolean}
  */
-StreamChecker.prototype.query = function(letter) {
-    const constraintOnWordsLength = this.inputLength >= 1 && this.inputLength <= 2000;
-    if (!constraintOnWordsLength) {
-        return false;
-    }
+StreamChecker.prototype.query = function (letter) {
+  const constraintOnWordsLength = this.inputLength >= 1 && this.inputLength <= 2000;
+  if (!constraintOnWordsLength) {
+    return false;
+  }
 
-    if (this.stack.length > 40000) {
-        return false;
-    }
+  if (this.stack.length > 40000) {
+    return false;
+  }
 
-    this.stack = this.stack + letter;
-    var stackLength = this.stack.length;
-    var isSuffix = false;
-    for (var index = 0; index < this.inputLength; index++) {
-        var word = this.input[index];
-        if (this.stack.substring(stackLength - word.length) === word) {
-            isSuffix = true;
-            break;
-        }
+  this.stack = this.stack + letter;
+  var stackLength = this.stack.length;
+  var isSuffix = false;
+  for (var index = 0; index < this.inputLength; index++) {
+    var word = this.input[index];
+    if (this.stack.substring(stackLength - word.length) === word) {
+      isSuffix = true;
+      break;
     }
-    return isSuffix;
+  }
+  return isSuffix;
 };
 
 /**
@@ -78,20 +83,19 @@ StreamChecker.prototype.query = function(letter) {
  */
 
 function runTest(data, label, expectedData = false) {
-    var streamChecker = new StreamChecker(data[0][0]);
-    console.log('Operating on', data.length);
-    console.time(label);
-    for (var i = 1; i < data.length; i++) {
-        const isTrue = streamChecker.query(data[i][0]);
-        if (expectedData !== false && isTrue !== expectedData[i]) {
-            console.error('Failed at ', data[i][0], streamChecker.stack);
-        }
+  var streamChecker = new StreamChecker(data[0][0]);
+  console.log('Operating on', data.length);
+  console.time(label);
+  for (var i = 1; i < data.length; i++) {
+    const isTrue = streamChecker.query(data[i][0]);
+    if (expectedData !== false && isTrue !== expectedData[i]) {
+      console.error('Failed at ', data[i][0], streamChecker.stack);
     }
-    console.timeEnd(label);
+  }
+  console.timeEnd(label);
 }
-
 
 runTest(sampleData, 'sampleData', sampleDataExpected);
 runTest(spellCheckerData, 'spellCheckerData');
-runTest(failedData, 'failedData', failedDataExpected)
+runTest(failedData, 'failedData', failedDataExpected);
 runTest(exceedTimeLimit, 'exceedTimeLimit');

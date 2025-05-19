@@ -23,33 +23,33 @@ After you complete the exercise, provide any notes on your code below such as ho
 */
 
 const getDeepProperty = (data: any, key: string, defaultValue?: any) => {
-    const keys = key.split('.');
-    let defaultFound = false;
-    for (let i = 0; i < keys.length; i++) {
-        const regex = /\[(\d+)\]/;
-        const match = keys[i].match(regex);
-        const currentKey = keys[i].replace(regex, '');
-        if (data[currentKey] === undefined) {
-            defaultFound = true;
-            break;
-        }
-        if (!match) {
-            data = data[currentKey];
-        } else {
-            const index = match[1];
-            if (data[currentKey][index] === undefined) {
-                defaultFound = true;
-                break;
-            }
-            data = data[currentKey][index];
-        }
+  const keys = key.split('.');
+  let defaultFound = false;
+  for (let i = 0; i < keys.length; i++) {
+    const regex = /\[(\d+)\]/;
+    const match = keys[i].match(regex);
+    const currentKey = keys[i].replace(regex, '');
+    if (data[currentKey] === undefined) {
+      defaultFound = true;
+      break;
     }
-
-    if (defaultFound) {
-        return defaultValue;
+    if (!match) {
+      data = data[currentKey];
+    } else {
+      const index = match[1];
+      if (data[currentKey][index] === undefined) {
+        defaultFound = true;
+        break;
+      }
+      data = data[currentKey][index];
     }
+  }
 
-    return data;
+  if (defaultFound) {
+    return defaultValue;
+  }
+
+  return data;
 };
-  
-export { getDeepProperty }
+
+export { getDeepProperty };

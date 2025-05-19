@@ -32,13 +32,13 @@ const hammingWeight = function(n: number): number {
 
 This function is commonly used to count the number of set bits (also called the Hamming weight or population count) in an integer.
  */
-const hammingWeight = function(n: number): number {
-    let sum = 0;
-    while(n != 0) {
-        sum += n & 1;
-        n = n >>> 1;
-    }
-    return sum;
+const hammingWeight = function (n: number): number {
+  let sum = 0;
+  while (n != 0) {
+    sum += n & 1;
+    n = n >>> 1;
+  }
+  return sum;
 };
 
 /**
@@ -62,13 +62,13 @@ const hammingWeight = function(n: number): number {
     Count = 3 (which is correct as 13 has three 1s in binary)
  */
 const hummingWeightBrainKernighanAlgo = (n: number): number => {
-    let count = 0;
-    while (n > 0) {
-        n &= n - 1;
-        // or n = n & (n - 1)
-        count++
-    }
-    return count;
-}
+  let count = 0;
+  while (n > 0) {
+    n &= n - 1;
+    // or n = n & (n - 1)
+    count++;
+  }
+  return count;
+};
 
 export { hammingWeight, hummingWeightBrainKernighanAlgo };
