@@ -9,7 +9,7 @@ When there is only one palindrome => 'No Second Palindrome exists'
 When there is a second palindrome => 'Found Palindrome: [PALINDROME]'
 */
 
-const isPalindrome = (data) => {
+const isPalindrome = (data: string) :boolean => {
     const length = data.length;
     for (let i = 0; i < length / 2; i++) {
         if (data[i] !== data[length - 1 - i]) {
@@ -19,7 +19,7 @@ const isPalindrome = (data) => {
     return true;
 };
 
-const palindrome = (data) => {
+const palindrome = (data: string):string => {
     if (typeof data !== 'string') {
         return 'No Palindrome exists';
     }
@@ -42,6 +42,4 @@ const palindrome = (data) => {
     return `Found Palindrome: ${palindromes[1]}`;
 };
 
-module.exports = {
-    palindrome
-};
+export { palindrome }

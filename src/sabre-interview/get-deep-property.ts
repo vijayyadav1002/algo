@@ -22,7 +22,7 @@ After you complete the exercise, provide any notes on your code below such as ho
 
 */
 
-const getDeepProperty = (data, key, defaultValue) => {
+const getDeepProperty = (data: any, key: string, defaultValue?: any) => {
     const keys = key.split('.');
     let defaultFound = false;
     for (let i = 0; i < keys.length; i++) {
@@ -52,7 +52,4 @@ const getDeepProperty = (data, key, defaultValue) => {
     return data;
 };
   
-module.exports = {
-    getDeepProperty,
-};
-  
+export { getDeepProperty }

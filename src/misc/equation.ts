@@ -1,6 +1,6 @@
 
 // solves 3x + 9y + 8z = 79;
-function findXYZ(n) {
+function findXYZ(n: number) {
   const solutions = [];
 
   for (let x = 0; x < n; x++) {
@@ -16,6 +16,4 @@ function findXYZ(n) {
   return solutions;
 }
 
-module.exports = {
-  findXYZ
-};
+export { findXYZ }

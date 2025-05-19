@@ -1,4 +1,4 @@
-const { findXYZ } = require('./equation');
+import { findXYZ } from './equation';
 
 describe('findXYZ is a function', () => {
     test('Input 1 with 3x + 9y + 8z = 79', () => {

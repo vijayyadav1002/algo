@@ -1,4 +1,4 @@
-const { getDeepProperty } = require('./get-deep-property');
+import { getDeepProperty } from './get-deep-property';
 
 describe('getDeepProperty is a function', () => {
     test('Input 1', () => {

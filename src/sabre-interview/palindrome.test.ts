@@ -1,4 +1,4 @@
-const { palindrome } = require('./palindrome');
+import { palindrome } from './palindrome';
 
 describe('palindrome is a function', () => {
     test('Input 1 with referrer', () => {
