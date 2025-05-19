@@ -21,3 +21,8 @@ npx tsc
 node dist/index.js
 # 11. Clean up the project
 rm -rf my-typescript-project
+
+
+# DS Interview Questions
+[Leetcode Question from Cracking the coding interview 6th edition](https://leetcode.com/discuss/post/1152824/cracking-the-coding-interview-6th-editio-97nm/#1)
+
