@@ -1,6 +1,5 @@
 // To find if all the elements in string are unique
 
-
 const is_unique = (input: string): boolean => {
   const char_map: { [key: string]: boolean } = {};
   for (let i = 0; i < input.length; i++) {
