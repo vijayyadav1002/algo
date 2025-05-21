@@ -26,6 +26,22 @@ const countBits = (n: number): number[] => {
   return result;
 };
 
+const countBitsOptimized = (n: number): number[] => {
+  const result = [];
+  const sumBits = (num: number): number => {
+    let sum = 0;
+    while (num) {
+      sum += num & 1;
+      num >>>= 1;
+    }
+    return sum;
+  };
+  for (let i = 0; i <= n; i++) {
+    result.push(sumBits(i));
+  }
+  return result;
+};
+
 const getBinaryOfNumber = (n: number): number[] => {
   const bits: number[] = [];
   while (n > 0) {
@@ -33,6 +49,15 @@ const getBinaryOfNumber = (n: number): number[] => {
     n = Math.floor(n / 2);
   }
   return bits.reverse();
+};
+
+const getBinaryOfNumberOptimized = (n: number): number[] => {
+  const bits: number[] = [];
+  while (n > 0) {
+    bits.unshift(n & 1);
+    n >>>= 1;
+  }
+  return bits;
 };
 
 const getNumberFromBinary = (n: number[]): number => {
@@ -43,7 +68,13 @@ const getNumberFromBinary = (n: number[]): number => {
   return number;
 };
 
-export { countBits, getBinaryOfNumber, getNumberFromBinary };
+export {
+  countBits,
+  getBinaryOfNumber,
+  getNumberFromBinary,
+  countBitsOptimized,
+  getBinaryOfNumberOptimized,
+};
 
 /**
 # Explain me number system in detail
