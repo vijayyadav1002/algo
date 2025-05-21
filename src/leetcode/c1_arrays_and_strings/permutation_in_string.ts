@@ -79,19 +79,56 @@ const checkInclusionOptimized = (s1: string, s2: string): boolean => {
     const left = s2.charCodeAt(i - s1.length) - offset;
 
     // Remove previous character
+    // if chars[left] === 0 was balanced then reduce matches
     if (chars[left] === 0) matches--;
     chars[left]++;
+    // if after removing chars[left] === 0 then increase matches
     if (chars[left] === 0) matches++;
 
     // Add new character
+    // if before adding match was balanced then reduce matches
     if (chars[right] === 0) matches--;
     chars[right]--;
+    // if after adding chars become zero then increase matches
     if (chars[right] === 0) matches++;
 
+    // if any stage matches balances to zero then return true
     if (matches === 26) return true;
   }
 
   return matches === 26;
 };
 
-export { checkInclusion, checkInclusionOptimized };
+const checkInclusionOptimizedButSimple = (s1: string, s2: string): boolean => {
+  if (s1.length > s2.length) return false;
+
+  const chars = new Array(26).fill(0),
+    offset = 'a'.charCodeAt(0);
+
+  // Count initial window
+  for (let i = 0; i < s1.length; i++) {
+    chars[s1.charCodeAt(i) - offset]++;
+    chars[s2.charCodeAt(i) - offset]--;
+  }
+
+  if (chars.every((value) => value == 0)) return true;
+
+  // Slide window
+  for (let i = s1.length; i < s2.length; i++) {
+    const right = s2.charCodeAt(i) - offset;
+    const left = s2.charCodeAt(i - s1.length) - offset;
+
+    // Remove previous character
+    chars[left]++;
+
+    // Add new character
+    chars[right]--;
+
+    // if any stage matches balances to zero then return true
+    if (chars.every((value) => value === 0)) return true;
+  }
+
+  return chars.every((value) => value === 0);
+};
+
+export { checkInclusion, checkInclusionOptimized, checkInclusionOptimizedButSimple };

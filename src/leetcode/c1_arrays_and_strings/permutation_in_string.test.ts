@@ -1,4 +1,8 @@
-import { checkInclusion, checkInclusionOptimized } from './permutation_in_string';
+import {
+  checkInclusion,
+  checkInclusionOptimized,
+  checkInclusionOptimizedButSimple,
+} from './permutation_in_string';
 
 describe('Permutation in String', () => {
   const testCases = [
@@ -60,6 +64,15 @@ describe('Permutation in String', () => {
       const { s1, s2, expected, description } = testCase;
       test(description, () => {
         expect(checkInclusionOptimized(s1, s2)).toBe(expected);
+      });
+    }
+  });
+
+  describe('Optimized Solution but Simple', () => {
+    for (const testCase of testCases) {
+      const { s1, s2, expected, description } = testCase;
+      test(description, () => {
+        expect(checkInclusionOptimizedButSimple(s1, s2)).toBe(expected);
       });
     }
   });
