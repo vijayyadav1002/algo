@@ -16,11 +16,10 @@ The solution is usually expected to be done in-place if the string is represente
 */
 
 const urlify = (input: string, trueLen: number): string => {
-  const replacer = '%20',
-    spaceCode = ' '.charCodeAt(0);
+  const replacer = '%20';
   let url = '';
   for (let i = 0; i < trueLen; i++) {
-    if (input.charCodeAt(i) === spaceCode) {
+    if (' ' === input[i]) {
       url += replacer;
     } else {
       url += input[i];
