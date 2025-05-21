@@ -29,10 +29,6 @@ const checkInclusion = (s1: string, s2: string): boolean => {
     for (const key in s1_map) {
       if (s1_map[key] !== s2_map[key]) return false;
     }
-    // Check if s2_map has any extra keys
-    for (const key in s2_map) {
-      if (!s1_map[key]) return false;
-    }
     return true;
   };
 
