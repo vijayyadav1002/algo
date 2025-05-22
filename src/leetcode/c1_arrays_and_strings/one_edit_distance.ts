@@ -58,4 +58,31 @@ const oneEditDistant = (s: string, t: string): boolean => {
   return false;
 };
 
-export { oneEditDistant };
+const oneEditDistantOptimized = (s: string, t: string): boolean => {
+  const lenS = s.length;
+  const lenT = t.length;
+  if (Math.abs(lenS - lenT) > 1 || Math.abs(lenT - lenS) > 1) return false;
+  let i = 0,
+    j = 0;
+  let foundDifference = false;
+  while (i < lenS && j < lenT) {
+    if (s[i] !== t[j]) {
+      if (foundDifference) return false;
+      foundDifference = true;
+      if (lenS > lenT) {
+        i++;
+      } else if (lenS < lenT) {
+        j++;
+      } else {
+        i++;
+        j++;
+      }
+    } else {
+      i++;
+      j++;
+    }
+  }
+  return s === t ? false : true;
+};
+
+export { oneEditDistant, oneEditDistantOptimized };
