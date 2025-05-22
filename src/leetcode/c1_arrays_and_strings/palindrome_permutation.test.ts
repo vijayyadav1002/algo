@@ -9,7 +9,7 @@ describe('palindromePermutation - Tests', () => {
     { input: 'aaaa', output: true },
     { input: 'x', output: true },
     { input: 'abcabcde', output: false },
-    { input: 'aabbccddeeffg', output: false },
+    { input: 'aabbccddeeffg', output: true },
   ];
   testCases.forEach(({ input, output }) => {
     test(`${input} ${output ? 'is a palindrome' : 'is not palindrome'}`, () => {
