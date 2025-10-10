@@ -34,9 +34,9 @@ Constraints:
 chars[i] is a lowercase English letter, uppercase English letter, digit, or symbol.
 */
 
-
 const stringCompress = (chars: any[]): number => {
-  let char_group: any[] = [], char_index = 0;
+  let char_group: any[] = [],
+    char_index = 0;
   for (let i = 0; i < chars.length; i++) {
     if (char_group?.[char_index] === undefined) {
       char_group.splice(char_index, 0, [chars[i]]);
@@ -56,40 +56,40 @@ const stringCompress = (chars: any[]): number => {
   for (let i = char_group.length - 1; i >= 0; i--) {
     if (char_group[i].length != 1) {
       const deleteElement = char_group[i][2] - 1;
-      const replaceWith = char_group[i][2].toString().split("");
-      chars.splice(char_group[i][1], deleteElement, ...replaceWith)  
+      const replaceWith = char_group[i][2].toString().split('');
+      chars.splice(char_group[i][1], deleteElement, ...replaceWith);
     }
   }
   return chars.length;
 };
 
 const stringCompressOptimized = (chars: any[]): number => {
-    let duplicates = 0;
-    let i = 0;
-    const replacer = () => {
-        const replaceWith = (duplicates + 1).toString().split("");
-        chars.splice(i - duplicates, duplicates, ...replaceWith)
-    }
-    while(i < chars.length) {
-      if (i === 0) {
-        i++;
-        continue;
-      }
-      if (chars[i] == chars[i-1]) {
-        duplicates++;
-      } else {
-        if (duplicates > 0) {
-          replacer();
-          i = i - duplicates + 1
-        }
-        duplicates = 0;
-      }
+  let duplicates = 0;
+  let i = 0;
+  const replacer = () => {
+    const replaceWith = (duplicates + 1).toString().split('');
+    chars.splice(i - duplicates, duplicates, ...replaceWith);
+  };
+  while (i < chars.length) {
+    if (i === 0) {
       i++;
+      continue;
     }
-    if (duplicates > 0) {
-      replacer();
+    if (chars[i] == chars[i - 1]) {
+      duplicates++;
+    } else {
+      if (duplicates > 0) {
+        replacer();
+        i = i - duplicates + 1;
+      }
+      duplicates = 0;
     }
-    return chars.length;
+    i++;
+  }
+  if (duplicates > 0) {
+    replacer();
+  }
+  return chars.length;
 };
 
 export { stringCompress, stringCompressOptimized };

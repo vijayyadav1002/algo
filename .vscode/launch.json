@@ -19,6 +19,24 @@
             ],
             "program": "${workspaceFolder}/reverse/array.reverse.js",
             "sourceMaps": true,
+        },
+        {
+            "type": "node-terminal",
+            "request": "launch",
+            "name": "Run single test file",
+            "command": "npm test -- ${fileBasenameNoExtension}"
+        },
+        {
+            "type": "node-terminal",
+            "request": "launch",
+            "name": "Run single file",
+            "command": "npm test -- ${fileBasenameNoExtension}"
+        },
+        {
+            "type": "node-terminal",
+            "request": "launch",
+            "name": "Run ts single file",
+            "command": "npx ts-node src/leetcode/stream.checker.2.ts"
         }
     ]
 }
