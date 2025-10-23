@@ -1,4 +1,4 @@
-class StreamChecker {
+export class StreamChecker {
   private words: string[];
   private input: string;
   private inputLength: number;
@@ -33,6 +33,25 @@ class StreamChecker {
       if (suffixMatched) {
         return true;
       }
+    }
+    return false;
+  }
+
+  queryOptimized(letter: string): boolean {
+    const constraintOnWordsLength = this.inputLength >= 1 && this.inputLength <= 2000;
+    if (!constraintOnWordsLength) {
+      return false;
+    }
+
+    if (this.input.length > 40000) {
+      return false;
+    }
+    this.input += letter;
+    for (const word of this.words) {
+      if (word.length > this.input.length) {
+        continue;
+      }
+      if (this.input.slice(this.input.length - word.length) === word) return true;
     }
     return false;
   }
