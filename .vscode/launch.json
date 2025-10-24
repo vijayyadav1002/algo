@@ -36,7 +36,7 @@
             "type": "node-terminal",
             "request": "launch",
             "name": "Run ts single file",
-            "command": "npx ts-node src/leetcode/stream.checker.2.ts"
+            "command": "npx ts-node ${relativeFile}"
         }
     ]
 }
