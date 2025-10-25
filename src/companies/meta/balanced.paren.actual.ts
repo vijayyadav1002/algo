@@ -11,43 +11,45 @@
  */
 
 export function balancedString(input: string): string {
-  let inputToArray = input.split('');
-  const openingParensMap: Record<string, string> = {
-    ')': '(',
-    '}': '{',
-    ']': '[',
-  };
+  const openingParensMap: Map<string, string> = new Map<string, string>([
+    [')', '('],
+    ['}', '{'],
+    [']', '['],
+  ]);
+  const openingParensSet: Set<string> = new Set<string>(['(', '{', '[']);
   let idx = 0;
-  let stack: { value: string; index: number }[] = [];
-  while (idx < inputToArray.length) {
-    const ch = inputToArray[idx];
-    if (ch in openingParensMap) {
-      if (stack.length !== 0 && stack[stack.length - 1].value === openingParensMap[ch]) {
+  let stack: number[] = [];
+  let indicesToRemove: Set<number> = new Set<number>();
+  while (idx < input.length) {
+    const ch = input[idx];
+    if (openingParensMap.has(ch)) {
+      if (stack.length !== 0 && input[stack[stack.length - 1]] === openingParensMap.get(ch)) {
         stack.pop();
       } else {
-        stack.push({
-          value: ch,
-          index: idx,
-        });
+        indicesToRemove.add(idx);
       }
-    } else if (Object.values(openingParensMap).includes(ch)) {
-      stack.push({
-        value: ch,
-        index: idx,
-      });
+    } else if (openingParensSet.has(ch)) {
+      stack.push(idx);
     }
     idx++;
   }
   if (stack.length > 0) {
-    inputToArray = inputToArray.filter((val, idx) => {
-      const exist = stack.find(({ index }) => index === idx);
-      return !exist;
-    });
+    for (const index of stack) {
+      indicesToRemove.add(index);
+    }
   }
 
-  return inputToArray.join('');
+  let result = '';
+  for (let i = 0; i < input.length; i++) {
+    if (!indicesToRemove.has(i)) {
+      result += input[i];
+    }
+  }
+
+  return result;
 }
 
+// Better approach since problem only talking about parentheses '()' not curly or square braces
 export function balancedStringBetter(input: string): string {
   const indices = new Set<number>();
   const stack: number[] = [];

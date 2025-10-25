@@ -7,6 +7,7 @@ describe('balanced String', () => {
     expect(balancedString('(a(b(c)d)')).toBe('a(b(c)d)');
     expect(balancedString('((((((')).toBe('');
     expect(balancedString('(()()(')).toBe('()()');
+    expect(balancedString('({}})()(')).toBe('({})()');
   });
   test('return balanced string better', () => {
     expect(balancedStringBetter('()')).toBe('()');
