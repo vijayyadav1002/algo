@@ -25,3 +25,30 @@ export function weightedDepthSum(input: NestedArray): number {
   }
   return sum;
 }
+
+/**
+ * Improved version of weightedDepthSum that:
+ * 1. Eliminates global state
+ * 2. Uses closure for depth tracking
+ * 3. Maintains the same time complexity O(n) where n is total number of elements
+ * 4. Maintains the same space complexity O(d) where d is maximum nesting depth
+ * 5. Is thread-safe and reentrant
+ * 6. Maintains single parameter interface
+ */
+export function weightedDepthSumImproved(input: NestedArray): number {
+  function sumWithDepth(arr: NestedArray, depth: number): number {
+    let sum = 0;
+
+    for (const element of arr) {
+      if (Array.isArray(element)) {
+        sum += sumWithDepth(element, depth + 1);
+      } else {
+        sum += element * depth;
+      }
+    }
+
+    return sum;
+  }
+
+  return sumWithDepth(input, 1);
+}
