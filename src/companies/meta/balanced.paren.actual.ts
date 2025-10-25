@@ -47,3 +47,36 @@ export function balancedString(input: string): string {
 
   return inputToArray.join('');
 }
+
+export function balancedStringBetter(input: string): string {
+  const indices = new Set<number>();
+  const stack: number[] = [];
+
+  // First pass: mark indices of unbalanced parentheses
+  for (let i = 0; i < input.length; i++) {
+    if (input[i] === '(') {
+      stack.push(i);
+    } else if (input[i] === ')') {
+      if (stack.length === 0) {
+        indices.add(i); // Unmatched closing parenthesis
+      } else {
+        stack.pop(); // Matched pair
+      }
+    }
+  }
+
+  // Add remaining unmatched opening parentheses
+  while (stack.length > 0) {
+    indices.add(stack.pop()!);
+  }
+
+  // Build result string excluding marked indices
+  let result = '';
+  for (let i = 0; i < input.length; i++) {
+    if (!indices.has(i)) {
+      result += input[i];
+    }
+  }
+
+  return result;
+}
