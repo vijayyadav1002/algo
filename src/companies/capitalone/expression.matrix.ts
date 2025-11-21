@@ -35,36 +35,65 @@
 
 function evaluateExpressionMatrix(matrix: (number | string)[][]): number {
   const rows = matrix.length;
+  if (rows === 0) return 0;
   const cols = matrix[0].length;
   let maxValue = -Infinity;
 
-  const evaluatePath = (x: number, y: number, currentValue: number, operation: string) => {
-    if (x >= rows || y >= cols) return;
+  const inBounds = (x: number, y: number) => x >= 0 && y >= 0 && x < rows && y < cols;
 
-    const cell = matrix[x][y];
+  // DFS from a starting numeric cell. expectOperator indicates what the next cell
+  // along the path should be (true => operator, false => number).
+  const dfs = (
+    x: number,
+    y: number,
+    currentValue: number,
+    lastOp: string | null,
+    expectOperator: boolean,
+  ) => {
+    // At any time after visiting a number we can consider the current expression
+    // as a valid sub-expression and update maxValue.
+    maxValue = Math.max(maxValue, currentValue);
 
-    if (typeof cell === 'number') {
-      if (operation === '+') {
-        currentValue += cell;
-      } else if (operation === '-') {
-        currentValue -= cell;
+    // Try moving right and down
+    const moves: Array<[number, number]> = [
+      [x + 1, y],
+      [x, y + 1],
+    ];
+    for (const [nx, ny] of moves) {
+      if (!inBounds(nx, ny)) continue;
+      const cell = matrix[nx][ny];
+
+      if (expectOperator) {
+        if (typeof cell === 'string' && (cell === '+' || cell === '-')) {
+          // consume operator and expect a number next
+          dfs(nx, ny, currentValue, cell, false);
+        }
       } else {
-        currentValue = cell; // First number
+        // expecting a number
+        if (typeof cell === 'number') {
+          let newValue = currentValue;
+          if (lastOp === '+') newValue = currentValue + cell;
+          else if (lastOp === '-') newValue = currentValue - cell;
+          else newValue = cell; // Shouldn't normally happen after a starting number
+
+          // after a number, next we expect an operator
+          dfs(nx, ny, newValue, null, true);
+        }
       }
-    } else if (cell === '+' || cell === '-') {
-      operation = cell;
     }
-
-    if (x === rows - 1 && y === cols - 1) {
-      maxValue = Math.max(maxValue, currentValue);
-      return;
-    }
-
-    evaluatePath(x + 1, y, currentValue, operation); // Move down
-    evaluatePath(x, y + 1, currentValue, operation); // Move right
   };
-  evaluatePath(0, 0, 0, '');
-  return maxValue;
+
+  // Start DFS from every numeric cell (a valid expression can start anywhere)
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      if (typeof matrix[i][j] === 'number') {
+        // start with this number, next we expect an operator
+        dfs(i, j, matrix[i][j] as number, null, true);
+      }
+    }
+  }
+
+  return maxValue === -Infinity ? 0 : maxValue;
 }
 
 export { evaluateExpressionMatrix };
