@@ -23,6 +23,4 @@ function countOddTrailingZeros(arr: number[]): number {
   return count;
 }
 
-console.log(countOddTrailingZeros([10, 100, 1000, 10000])); // Output: 2
-
 export { countOddTrailingZeros };
