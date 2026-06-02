@@ -9,6 +9,7 @@
     "paths": {
       "@/*": ["./src/*"]                               /* Map the '@' alias to the 'src' directory. */
     },
+    "types": ["jest"]
   },
   "include": [
     "src"                                     /* Include all TypeScript files in the src directory and its subdirectories. */

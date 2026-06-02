@@ -15,12 +15,14 @@ function countOddTrailingZeros(arr: number[]): number {
       n /= 10;
     }
 
-    if (trailingZeros % 2 === 1) {
+    if (trailingZeros % 2 !== 0) {
       count++;
     }
   }
 
   return count;
 }
+
+console.log(countOddTrailingZeros([10, 100, 1000, 10000])); // Output: 2
 
 export { countOddTrailingZeros };
