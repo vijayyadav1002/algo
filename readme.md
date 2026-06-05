@@ -25,4 +25,5 @@ rm -rf my-typescript-project
 
 # DS Interview Questions
 [Leetcode Question from Cracking the coding interview 6th edition](https://leetcode.com/discuss/post/1152824/cracking-the-coding-interview-6th-editio-97nm/#1)
-
+[Capital One Matrix Interview Questions](https://codejeet.com/blog/capital-one-matrix-interview-questions)
+[GeeksforGeeks Path Problems Tutorial](https://www.geeksforgeeks.org/dsa/tutorial-on-path-problems-in-a-grid-maze-or-matrix/)

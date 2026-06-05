@@ -28,14 +28,14 @@ describe('evaluateExpressionMatrix', () => {
     expect(evaluateExpressionMatrix([[2, '-', 5]])).toBe(5);
   });
 
-  test('evaluates expressions across both directions (mixed path)', () => {
-    // path: (0,0)=1 → down (1,0)='+' → right (1,1)=5 → value 6
+  test('does not mix directions — returns standalone max when no single-direction path exists', () => {
+    // 1+5 would require right then down (mixed) — invalid. Max standalone is 5.
     expect(
       evaluateExpressionMatrix([
         [1, '+'],
         ['+', 5],
       ]),
-    ).toBe(6);
+    ).toBe(5);
   });
 
   test('3x3 example from problem description returns 9', () => {
@@ -47,5 +47,16 @@ describe('evaluateExpressionMatrix', () => {
         [4, '+', 5],
       ]),
     ).toBe(9);
+  });
+  test('5x4 example from problem description returns 15', () => {
+    // max paths: 7+8=15 (row 2) or 5+10=15 (col 3) — each path is single-direction only
+    expect(
+      evaluateExpressionMatrix([
+        [1, '+', 2, '-', 3],
+        ['+', 4, '+', 5, '+'],
+        [6, '-', 7, '+', 8],
+        ['+', 9, '-', 10, '+'],
+      ]),
+    ).toBe(15);
   });
 });
