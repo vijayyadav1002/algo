@@ -13,7 +13,12 @@ function hasOddEvenPattern(arr: number[]): boolean {
   return false;
 }
 
-export { hasOddEvenPattern };
+function hasOddEvenPatternSol2(arr: number[]): boolean {
+  for (let i = 1; i < arr.length; i++) {
+    // sum of odd and even number is always odd
+    if ((arr[i] + arr[i - 1]) % 2 === 1) return true;
+  }
+  return false;
+}
 
-console.log(hasOddEvenPattern([1, 2, 3, 4]));
-console.log(hasOddEvenPattern([2, 4, 6, 8]));
+export { hasOddEvenPattern, hasOddEvenPatternSol2 };
